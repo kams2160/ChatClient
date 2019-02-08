@@ -1,0 +1,8 @@
+.sidebar {
+    border-right: 1px solid #dddddd;
+    position: fixed;
+    top: 41px;
+    bottom: 0;
+    display: block;
+    overflow-y: scroll;
+}

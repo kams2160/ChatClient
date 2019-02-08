@@ -1,0 +1,54 @@
+<div id="user-page" class="container">
+    <div class="jumbotron my-3">
+        <div *ngIf="user && !error">
+            <h3 class="text-xs-center">{{user.email}}</h3>
+            <hr class="my-2">
+
+            <form (submit)="editUserData(name.value, surname.value, university.value, department.value, fieldOfStudy.value)" #userFrom="ngForm">
+                <div class="form-group row">
+                    <label for="example-text-input" class="col-xs-5 col-form-label text-xs-right">Imię</label>
+                    <div class="col-xs-7">
+                        <input class="form-control" type="text" value="{{user.name}}" id="example-text-input" #name required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="example-search-input" class="col-xs-5 col-form-label text-xs-right">Nazwisko</label>
+                    <div class="col-xs-7">
+                        <input class="form-control" type="search" value="{{user.surname}}" id="example-search-input" #surname required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="example-search-input" class="col-xs-5 col-form-label text-xs-right">Uczelnia</label>
+                    <div class="col-xs-7">
+                        <input class="form-control" type="search" value="{{user.university}}" id="example-search-input" #university required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="example-search-input" class="col-xs-5 col-form-label text-xs-right">Wydział</label>
+                    <div class="col-xs-7">
+                        <input class="form-control" type="search" value="{{user.department}}" id="example-search-input" #department required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="example-search-input" class="col-xs-5 col-form-label text-xs-right">Kierunek Studiów</label>
+                    <div class="col-xs-7">
+                        <input class="form-control" type="search" value="{{user.fieldOfStudy}}" id="example-search-input" #fieldOfStudy required>
+                    </div>
+                </div>
+                <div class="row text-xs-center mt-2">
+                    <button type="submit" class="btn btn-success mx-auto" [disabled]="!userFrom.form.valid">Zapisz</button>
+                </div>
+            </form>
+        </div>
+
+        <div *ngIf="success" class="alert alert-success mt-2 mx-auto text-xs-center">
+            Pomyślnie zaktualizowano dane
+        </div>
+
+        <div *ngIf="error" class="alert alert-success mt-2 mx-auto text-xs-center">
+            Nie udało się zaktualizować danych
+        </div>
+        
+        <div [hidden]="user" class="loader mx-auto"></div>
+    </div>
+</div>

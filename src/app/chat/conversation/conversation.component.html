@@ -1,0 +1,51 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-3 my-2 sidebar">
+      <div class="list-group">
+        <a (click)="setFriend(friend.id)" class="list-group-item list-group-item-action" *ngFor="let friend of friends">
+          <p class="list-group-item-heading align-middle">{{friend.name}} {{friend.surname}}</p>
+        </a>
+      </div>
+    </div>
+    <!--Messages-->
+    <div class="col-md-9 my-2 px-2">
+      <h5 class="text-xs-center p-2" *ngIf="!friendId">Wybierz znajomego, z którym chcesz porozmawiać :)</h5>
+
+      <div id="conversation-form" class="row mb-1" *ngIf="friendId">
+        <textarea class="form-control post-message" rows="6" cols="40" placeholder="Napisz wiadomość..." [(ngModel)]="messageContent"></textarea>
+        <button type="button" class="btn btn-success mt-1 float-xs-right" (click)="addMessage()" [disabled]="messageSending">Wyślij wiadomość</button>
+      </div>
+
+      <div id="conversation" class="row" *ngIf="friendId">
+        <h5 class="text-xs-center p-2" *ngIf="!messages || messages.length === 0">Brak wiadomości</h5>
+
+        <div *ngFor="let message of messages">
+          <!--Message-->
+          <div class="px-2 my-1" *ngIf="message.userId !== friendId">
+            <div class="card text-xs-left">
+              <div class="card-block">
+                <h6 class="card-subtitle text-muted mb-1">{{message.userFullName}}</h6>
+                <p class="card-text m-0">{{message.content}}</p>
+                <p class="card-text text-xs-right m-0"><small class="text-muted">{{message.date}}</small></p>
+              </div>
+            </div>
+          </div>
+          <!--Message Friend-->
+          <div class="px-2 my-1" *ngIf="message.userId === friendId">
+            <div class="card text-xs-left friend">
+              <div class="card-block">
+                <h6 class="card-subtitle text-muted mb-1">{{message.userFullName}}</h6>
+                <p class="card-text m-0">{{message.content}}</p>
+                <p class="card-text text-xs-right m-0"><small class="text-muted">{{message.date}}</small></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="hasMoreData" class="text-xs-center my-1">
+          <button type="button" class="btn btn-default" (click)="getMoreMessages()" [disabled]="postsLoading">Pokaż więcej</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

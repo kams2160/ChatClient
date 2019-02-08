@@ -1,0 +1,15 @@
+#searchWrapper {
+    width: 100%;
+}
+
+.invitation {
+    font-weight: bold;
+    color: whitesmoke;
+    padding: 1px 7px 2px;
+    background: #d9534f;
+    border-radius: 5px;
+}
+
+.searcher-button {
+    margin-left: 5px !important;
+}

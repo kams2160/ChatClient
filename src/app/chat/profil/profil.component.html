@@ -1,0 +1,61 @@
+<div *ngIf="profil">
+  <div class="row">
+    <!--Profile-->
+    <div class="col-lg-3 my-2 sidebar">
+      <div class="card text-xs-center">
+        <img class="p-2" src="assets/img/user.png" height="200">
+        <div class="card-block">
+          <h4 class="card-title">{{profil.name}} {{profil.surname}}</h4>
+          <div class="card-text">
+            <p>{{profil.email}}</p>
+            <p><strong>Uczelnia</strong><br> {{profil.university}}</p>
+            <p><strong>Wydział</strong><br> {{profil.department}}</p>
+            <p><strong>Kierunek</strong><br> {{profil.fieldOfStudy}}</p>
+          </div>
+        </div>
+        <div *ngIf="!isLoggedUserProfile" class="card-block">
+          <button *ngIf="!profil.isFriend" (click)="addToFriends()" class="btn btn-link">Dodaj znajomego</button>
+          <button *ngIf="profil.isFriend" (click)="removeFromFriends()" class="btn btn-link">Usuń znajomego</button>
+          <div *ngIf="invitationSuccess" class="alert alert-success" role="alert">Wysłano zaproszenie</div>
+          <div *ngIf="invitationError" class="alert alert-danger" role="alert">Nie można wysłać zaproszenia</div>
+          <div *ngIf="removeSuccess" class="alert alert-success" role="alert">Usunięto ze znajomych</div>
+          <div *ngIf="removeError" class="alert alert-danger" role="alert">Nie udało się wykonać operacji</div>
+        </div>
+      </div>
+    </div>
+
+    <!--Posts-->
+    <div class="col-lg-7 my-2 px-2 post-content">
+      <div class="row">
+        <textarea class="form-control" rows="10" cols="40" placeholder="Napisz wiadomość..." [(ngModel)]="messageContent" [disabled]="postSending"></textarea>
+        <button type="button" class="btn btn-success mt-1 float-xs-right" (click)="addPost()" [disabled]="postSending">Dodaj wiadomość</button>
+      </div>
+      <div class="row mt-2" *ngFor="let post of posts">
+        <div class="card text-xs-left">
+          <div class="card-block">
+            <p class="card-text">{{post.content}}</p>
+          </div>
+          <div class="card-footer text-muted">
+            <span class="float-xs-left">{{post.date}}</span>
+            <span class="float-xs-right">{{post.authorFullName}}</span>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="hasMoreData" class="text-xs-center mt-1">
+        <button type="button" class="btn btn-default" (click)="getMorePosts()" [disabled]="postsLoading">Pokaż więcej</button>
+      </div>
+    </div>
+
+    <!--Friends-->
+    <div class="col-lg-2 my-2 px-2 friends">
+      <div class="card text-xs-center">
+        <div class="card-block">
+          <h4 class="card-title">Znajomi</h4>
+          <p *ngIf="!friends || friends.length === 0">Brak znajomych</p>
+          <div class="card-text text-xs-left">
+            <button *ngFor="let friend of friends" type="button" class="btn btn-link friends-item" (click)="showProfil(friend.id)">{{friend.name}} {{friend.surname}}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

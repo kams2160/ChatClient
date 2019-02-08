@@ -1,0 +1,18 @@
+.sidebar {
+    min-width: 300px;
+    max-width: 600px;
+}
+
+.post-content {
+    min-width: 300px;
+    max-width: 600px;
+}
+
+.friends {
+    min-width: 240px;
+    max-width: 600px;
+}
+
+.friends-item {
+    width: 100%;
+}

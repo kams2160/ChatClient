@@ -1,0 +1,32 @@
+.post-message {
+    width: 600px;
+}
+
+.friend {
+    background-color: ghostwhite;
+}
+
+#conversation {
+    max-height: 650px;
+    width: 600px;
+    background-color: #f7f7f9;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+}
+
+#conversation-form {
+    width: 600px;
+}
+
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 7px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(0,0,0,.5);
+    -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+}

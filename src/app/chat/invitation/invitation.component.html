@@ -1,0 +1,10 @@
+<div class="jumbotron my-2 mx-auto">
+    <h5 class="text-xs-center" *ngIf="!friends || friends.length === 0">Brak zaproszeń</h5>
+    <div *ngFor="let friend of friends" class="card card-block">
+        <p class="card-text mb-1">Zaproszenie od: <strong>{{friend.name}} {{friend.surname}}</strong></p>
+        <button (click)="acceptFriend(friend.id)" class="card-link btn btn-success">Akceptuj</button>
+        <button (click)="removeFriend(friend.id)" class="card-link btn btn-danger">Usuń</button>
+    </div>
+    <div *ngIf="invitationError" class="alert alert-danger" role="alert">Nie udało się potwierdzić zaproszenia</div>
+    <div *ngIf="removeError" class="alert alert-danger" role="alert">Nie udało się usunąć zaproszenia</div>
+</div>
