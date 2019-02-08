@@ -1,3 +1,3 @@
 # ChatClient
 
-## Simple chat project - anuglar, rxjs
+## Simple chat project - angular, rxjs
